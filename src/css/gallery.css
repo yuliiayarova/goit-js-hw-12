@@ -29,7 +29,7 @@ input:hover {
   border-color: #000;
 }
 
-.btn-submit {
+.btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -51,8 +51,14 @@ input:hover {
   transition: background-color 250ms ease-in;
 }
 
-.btn-submit:hover {
+.btn:hover {
   background-color: #6c8cff;
+}
+
+.btn-load {
+  min-width: 125px;
+  display: block;
+  margin: 0 auto;
 }
 
 /* #endregion */
@@ -125,11 +131,10 @@ body .sl-wrapper .sl-counter {
   height: 48px;
   border-width: 3px;
   border-style: dashed solid solid dotted;
-  border-color: #ff3d00 #ff3d00 transparent #ff3d00;
+  border-color: #4e75ff #4e75ff transparent #4e75ff;
   border-radius: 50%;
   display: block;
   margin: 0 auto;
-  /* position: relative; */
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
@@ -140,7 +145,7 @@ body .sl-wrapper .sl-counter {
   left: 20px;
   top: 31px;
   border: 10px solid transparent;
-  border-right-color: #ff3d00;
+  border-right-color: #4e75ff;
   transform: rotate(-40deg);
 }
 

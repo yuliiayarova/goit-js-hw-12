@@ -3,6 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryList = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+export const loadImagesBtn = document.querySelector('.btn-load');
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -47,4 +48,12 @@ export function showLoader() {
 
 export function hideLoader() {
   loader.classList.add('hidden');
+}
+
+export function showLoadMoreButton() {
+  loadImagesBtn.classList.remove('hidden');
+}
+
+export function hideLoadMoreButton() {
+  loadImagesBtn.classList.add('hidden');
 }
