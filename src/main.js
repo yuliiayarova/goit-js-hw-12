@@ -1,7 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import { getImagesByQuery, PER_PAGE } from './js/pixabay-api';
+import { getImagesByQuery } from './js/pixabay-api';
 import {
   clearGallery,
   createGallery,
@@ -9,7 +9,7 @@ import {
   hideLoader,
   hideLoadMoreButton,
   showLoadMoreButton,
-  loadImagesBtn,
+  loadMoreBtn,
 } from './js/render-functions';
 
 import iconError from './img/icon-error.svg';
@@ -46,8 +46,7 @@ async function handleImageSearch(event) {
         messageColor: '#fafafb',
         iconUrl: iconError,
         messageSize: '16',
-        maxWidth: 432,
-        pauseOnHover: true,
+        maxWidth: 354,
       });
       return;
     }
@@ -58,6 +57,7 @@ async function handleImageSearch(event) {
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
         position: 'topRight',
+        messageSize: '16',
       });
     } else {
       showLoadMoreButton();
@@ -75,7 +75,7 @@ async function handleImageSearch(event) {
   }
 }
 
-loadImagesBtn.addEventListener('click', handleLoadMore);
+loadMoreBtn.addEventListener('click', handleLoadMore);
 
 async function handleLoadMore() {
   showLoader();
@@ -85,6 +85,7 @@ async function handleLoadMore() {
     const data = await getImagesByQuery(currentQuery, currentPage);
 
     createGallery(data.hits);
+    scrollToNewImages();
 
     const totalLoaded = document.querySelectorAll('.gallery-item').length;
 
@@ -106,4 +107,11 @@ async function handleLoadMore() {
   } finally {
     hideLoader();
   }
+}
+
+function scrollToNewImages() {
+  const galleryItem = document.querySelector('.gallery-item');
+  if (!galleryItem) return;
+  const { height: cardHeight } = galleryItem.getBoundingClientRect();
+  window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
 }

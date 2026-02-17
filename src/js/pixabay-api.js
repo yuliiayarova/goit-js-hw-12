@@ -5,7 +5,7 @@ const API_KEY = '54665094-e0be37d71c4f64a84ae76fe5e';
 
 axios.defaults.baseURL = BASE_URL;
 
-export const PER_PAGE = 15;
+const PER_PAGE = 15;
 
 export async function getImagesByQuery(query, page = 1) {
   try {
@@ -17,12 +17,11 @@ export async function getImagesByQuery(query, page = 1) {
         orientation: 'horizontal',
         safesearch: true,
         per_page: PER_PAGE,
-        page: page,
+        page,
       },
     });
     return response.data;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 }
